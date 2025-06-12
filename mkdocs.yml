@@ -6,6 +6,7 @@ theme:
   features:
     - navigation.tabs
     - palette.toggle
+  custom_dir: docs/overrides
   palette:
 
     # Palette toggle for automatic mode
