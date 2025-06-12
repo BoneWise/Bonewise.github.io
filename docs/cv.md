@@ -1,4 +1,6 @@
-# Welcome!
+# About Me
 
-<img src="img/DSC_2833.JPG" alt="My photo" width="150">
+<img src="/ZheHu/img/DSC_2833.JPG" width="150" alt="My photo">
+
+
 
