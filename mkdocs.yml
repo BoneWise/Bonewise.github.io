@@ -20,13 +20,6 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
-plugins:
-  - search
-  - sitemap:
-      changefreq: daily
-      priority: 0.5
-
-
 nav:
   - Welcome!: index.md
   - About Me: cv.md
