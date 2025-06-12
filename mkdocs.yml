@@ -5,6 +5,20 @@ theme:
   name: material
   features:
     - navigation.tabs
+    - palette.toggle
+    palette:
+    - scheme: default
+      primary: indigo        # 主色调（白天模式）
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo        # 主色调（夜间模式）
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
 plugins:
   - search
