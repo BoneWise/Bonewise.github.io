@@ -6,7 +6,7 @@ theme:
   features:
     - navigation.tabs
     - palette.toggle
-    palette:
+  palette:
     - scheme: default
       primary: indigo        # 主色调（白天模式）
       accent: indigo
