@@ -1,7 +1,3 @@
----
-hide:
-  - toc
----
 # 👋 Welcome!
 
 Nice to see you! My name is **Zhe Hu**.  
