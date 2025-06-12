@@ -1,17 +1,18 @@
-# Welcome to MkDocs
+# 👋 Welcome!
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Nice to see you! My name is **Zhe Hu**.  
+I come from China and I'm currently pursuing a Master's degree (M1) in Neuroscience  
+at <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>, living and studying in Japan.
+---
 
-## Commands
+## 🧠 Research Interests
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+- Machine Learning  
+- Neuroscience  
+- *To be continued...*
+---
 
-## Project layout
+## 📖 What I'm Reading
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+<a href="https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link" target="_blank" rel="noopener noreferrer">Reading Notes (Notion)</a>
+---
