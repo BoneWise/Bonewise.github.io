@@ -12,7 +12,7 @@ at <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener 
 - *To be continued...*
 ---
 
-## 📖 What I'm Reading
+## 📖 What I'm Learning
 
 <a href="https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link" target="_blank" rel="noopener noreferrer">Reading Notes (Notion)</a>
 ---
