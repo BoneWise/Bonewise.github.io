@@ -7,6 +7,6 @@ theme:
 nav:
   - Welcome!: index.md
   - About Me: cv.md
-  - Research: research.md
+  
   - Publications: pubs.md
   - Contact: contact.md
