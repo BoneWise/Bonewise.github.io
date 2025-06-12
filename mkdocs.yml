@@ -1,14 +1,13 @@
 site_name: Zhe's space
 site_url: https://mydomain.org/mysite
+
 theme:
   name: material
   features:
     - navigation.tabs
 
-
 nav:
   - Welcome!: index.md
   - About Me: cv.md
-  
   - Publications: pubs.md
   - Contact: contact.md
