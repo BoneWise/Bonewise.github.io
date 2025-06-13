@@ -8,13 +8,7 @@
   document.write('<a href="mailto:' + user2 + user421+ '@' + domain + '">📧 Email</a>');
 </script>
 ---
-<h2>📬 Leave me a message</h2>
-
-<p>
-  👉 <a href="https://noteforms.com/forms/contact-form-zegi0b" target="_blank" rel="noopener noreferrer">
-    Click here to open the form
-  </a>
-</p>
+<iframe style="border:none;width:200%;" id="contact-form-zegi0b" src="https://noteforms.com/forms/contact-form-zegi0b"></iframe><script type="text/javascript" onload="initEmbed('contact-form-zegi0b')" src="https://noteforms.com/widgets/iframe.min.js"></script>
 ---
 <script src="https://giscus.app/client.js"
         data-repo="BoneWise/Bonewise.github.io"
