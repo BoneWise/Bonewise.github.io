@@ -1,6 +1,6 @@
 site_name: Zhe's space
 site_url: https://mydomain.org/mysite
-
+site_url: https://huzhe3566.com
 theme:
   name: material
   features:
@@ -40,3 +40,4 @@ nav:
   - About Me: cv.md
   - Publications: pubs.md
   - Contact: contact.md
+  
