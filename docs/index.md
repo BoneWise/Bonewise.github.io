@@ -1,33 +1,46 @@
-## 👋 Welcome!
+# 👋 Welcome!
 
+Hello! I'm **Zhe Hu** (胡哲), a Master's student in Neuroscience at <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a> in Japan.
 
-Nice to see you! My name is **Zhe Hu**.  
-I come from China and I'm currently pursuing a Master's degree (M1) in Neuroscience  
-at <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>, living and studying in Japan.
+---
 
+## 🎓 About
 
-
+- 🌏 **Origin:** China
+- 🎓 **Current:** M1 Student in Neuroscience
+- 🏫 **Lab:** <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>, Japan
 
 ---
 
 ## 🧠 Research Interests
 
-- Machine Learning  
-- Neuroscience  
-- *To be continued...*
+I'm passionate about understanding the brain through computational approaches:
+
+- **Machine Learning** - Applying computational methods to neuroscience
+- **Computational Neuroscience** - Modeling brain functions and neural systems
+- **Data Analysis** - Extracting insights from neural data
+
 ---
 
-## 📖 What I'm Learning
+## 📚 Learning Journey
 
-<a href="https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link" target="_blank" rel="noopener noreferrer">Reading Notes (Notion)</a>
+🔗 <a href="https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link" target="_blank" rel="noopener noreferrer">**My Reading Notes on Notion**</a>
+
+Explore my notes on research papers, books, and learning materials.
+
 ---
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<hr style="margin-top: 40px;">
 
-<div style="text-align: right;">
-  This page has been clicked 
+## 🔗 Quick Links
+
+- 📄 [Publications](pubs.md) - Research outputs and academic works
+- 👤 [About Me](cv.md) - More about my background
+- 📧 [Contact](contact.md) - Get in touch
+
+---
+
+<div style="text-align: center; margin-top: 60px; opacity: 0.6;">
   <a href="https://hits.sh/huzhe3566.com/" style="text-decoration: none;">
     <img alt="Hits" src="https://hits.sh/huzhe3566.com.svg" style="vertical-align: middle;">
-  </a> times.
+  </a>
 </div>
 

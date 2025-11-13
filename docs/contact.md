@@ -1,15 +1,36 @@
-# Contact me !
+# Contact Me
 
+I'm always happy to connect with fellow researchers, students, and anyone interested in neuroscience and machine learning!
+
+---
+
+## 📧 Email
 
 <script type="text/javascript">
   const user2 = "huzhe";
   const user421 = "3566";
   const domain = "gmail.com";
-  document.write('<a href="mailto:' + user2 + user421+ '@' + domain + '">📧 Email</a>');
+  document.write('<p style="font-size: 1.1em; margin: 20px 0;"><a href="mailto:' + user2 + user421+ '@' + domain + '" style="text-decoration: none; color: #2196F3;">✉️ ' + user2 + user421 + '@' + domain + '</a></p>');
 </script>
+
+Feel free to reach out for:
+- Research collaboration
+- Academic discussions
+- Questions about my work
+- General inquiries
+
 ---
-<iframe style="border:none;width:200%;" id="contact-form-zegi0b" src="https://noteforms.com/forms/contact-form-zegi0b"></iframe><script type="text/javascript" onload="initEmbed('contact-form-zegi0b')" src="https://noteforms.com/widgets/iframe.min.js"></script>
+
+## 📝 Contact Form
+
+<iframe style="border:none;width:100%;min-height:500px;" id="contact-form-zegi0b" src="https://noteforms.com/forms/contact-form-zegi0b"></iframe><script type="text/javascript" onload="initEmbed('contact-form-zegi0b')" src="https://noteforms.com/widgets/iframe.min.js"></script>
+
 ---
+
+## 💬 Discussion
+
+Leave a comment or start a discussion below:
+
 <script src="https://giscus.app/client.js"
         data-repo="BoneWise/Bonewise.github.io"
         data-repo-id="R_kgDOO6cUYQ"
