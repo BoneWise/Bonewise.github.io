@@ -8,12 +8,6 @@
   - Suzuki Lab, Japan
   - Focus: Computational Neuroscience and Machine Learning applications
 
-### Research Experience
-
-- **Graduate Research Assistant**
-  - <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>
-  - Working on neuroscience research projects
-
 ---
 
 ## 🛠️ Skills & Expertise
