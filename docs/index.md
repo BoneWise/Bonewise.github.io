@@ -7,7 +7,7 @@ Hello! I'm **Zhe Hu** (胡哲), a Master's student in Neuroscience at <a href="h
 ## 🎓 About
 
 - 🌏 **Origin:** China
-- 🎓 **Current:** M1 Student in Neuroscience
+- 🎓 **Current:** M2 Student in Neuroscience
 - 🏫 **Lab:** <a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>, Japan
 
 ---
