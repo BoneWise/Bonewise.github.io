@@ -4,10 +4,9 @@
 
 ### Education
 
-- **Master's student in Social Data Science (M2)** (Current)
-  - Hitotsubashi University, Japan
-  - Working with Professor Shinsuke Suzuki
-  - Focus: Computational Neuroscience and Machine Learning applications
+- **M2 in Neuroscience** (Current)
+- Suzuki Lab, Japan
+- Focus: Computational Neuroscience and Machine Learning applications
 
 ---
 
