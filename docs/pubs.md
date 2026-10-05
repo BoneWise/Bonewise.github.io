@@ -12,9 +12,11 @@
 
 ---
 
-## 📝 Preprints & Working Papers
+## 📝 Ongoing Research
 
-*Preprints and ongoing research will be shared here.*
+- **Decoding Food Preferences from fMRI with Deep Learning: What Drives Prediction Across Individuals?**
+  - Ongoing research project.
+  - [Code and results repository](https://github.com/BoneWise/food-preference-fmri)
 
 ---
 
