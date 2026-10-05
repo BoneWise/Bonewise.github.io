@@ -4,7 +4,7 @@
 
 ### Education
 
-- **M1 in Neuroscience** (Current)
+- **M2 in Neuroscience** (Current)
   - Suzuki Lab, Japan
   - Focus: Computational Neuroscience and Machine Learning applications
 
