@@ -1,0 +1,38 @@
+{#-
+  悬浮导航栏（替换 Material 默认页头）：品牌 + 页面链接 + 昼夜切换 + 搜索
+-#}
+<header class="md-header zh-header" data-md-component="header">
+  <nav class="md-header__inner md-grid zh-header__inner" aria-label="{{ lang.t('header') }}">
+    <label class="md-header__button md-icon zh-header__menu" for="__drawer" aria-label="Menu">
+      {% include ".icons/material/menu.svg" %}
+    </label>
+    <a href="{{ nav.homepage.url | url }}" class="zh-brand" aria-label="{{ config.site_name | e }}">
+      <span class="zh-brand__mark" aria-hidden="true">{% include ".icons/zh/sigil.svg" %}</span>
+      <span class="zh-brand__text">Zhe Hu</span>
+    </a>
+    <ul class="zh-nav">
+      {% for item in nav %}
+        {% if item.is_page %}
+          <li>
+            <a href="{{ item.url | url }}" class="zh-nav__link{% if item.active %} is-active{% endif %}"{% if item.active %} aria-current="page"{% endif %}>{{ item.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <div class="zh-header__tools">
+      {% if config.theme.palette and not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+        {% include "partials/javascripts/palette.html" %}
+      {% endif %}
+      {% if "material/search" in config.plugins %}
+        {% set search = config.plugins["material/search"] | attr("config") %}
+        {% if search.enabled %}
+          <label class="md-header__button md-icon" for="__search" aria-label="Search">
+            {% include ".icons/material/magnify.svg" %}
+          </label>
+          {% include "partials/search.html" %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </nav>
+</header>

@@ -1,6 +1,11 @@
+---
+hide:
+  - toc
+---
+
 # About Me
 
-## 👨‍🎓 Academic Background
+## Academic Background
 
 ### Education
 
@@ -10,7 +15,7 @@
 
 ---
 
-## 🛠️ Skills & Expertise
+## Skills & Expertise
 
 ### Technical Skills
 - Machine Learning
@@ -25,7 +30,7 @@
 
 ---
 
-## 🌟 Interests
+## Interests
 
 - Understanding brain mechanisms through computational approaches
 - Developing machine learning models for neuroscience

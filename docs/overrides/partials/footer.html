@@ -1,4 +1,17 @@
-<!-- 自定义页脚内容 -->
-<div style="text-align: center; padding: 1em; font-size: 1.4em; background-color: black; color: white;">
-  © 2025 BoneWise
-</div>
+{#- 页脚 -#}
+<footer class="md-footer zh-footer">
+  <div class="zh-footer__inner md-grid">
+    <p class="zh-footer__copy">
+      © {{ build_date_utc.strftime('%Y') }} BoneWise
+      <span aria-hidden="true">·</span>
+      Built with <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
+    </p>
+    <nav class="zh-footer__nav" aria-label="Footer">
+      {% for item in nav %}
+        {% if item.is_page %}
+          <a href="{{ item.url | url }}">{{ item.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+</footer>

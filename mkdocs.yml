@@ -1,43 +1,61 @@
 site_name: Zhe Hu | Computational Neuroscience
-site_url: https://mydomain.org/mysite
+site_url: https://huzhe3566.com/
+site_author: Zhe Hu
 
 theme:
   name: material
-  features:
-    - navigation.tabs
-    - palette.toggle
   custom_dir: docs/overrides
+  # 字体改为站内自托管（docs/assets/fonts），不再请求 Google Fonts
+  font: false
+  icon:
+    logo: zh/sigil
+  favicon: assets/images/favicon.svg
+  features:
+    - navigation.top
   palette:
-
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
-
-      # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default 
-         # Set the primary and accent colors for light mode
-      primary: blue grey
-      accent: blue grey
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
+    # 夜 —— 紫夜星空（晓美焰）
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      # Set the primary and accent colors for dark mode
-      primary: blue grey
-      accent: blue grey
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+        icon: material/white-balance-sunny
+        name: "Switch to Day · 昼"
+
+    # 昼 —— 和纸晨空（传颂之物）
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: "Switch to Night · 夜"
+
+extra:
+  zh:
+    # 顶部横幅大图（可选）。把图片放进 docs/assets/images/ 后填写路径，
+    # 例如 assets/images/banner-night.jpg。留空则使用画布绘制的星空 / 晨空。
+    banner_night: ""
+    banner_day: ""
+    github: https://github.com/BoneWise
+    notes: https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - assets/stylesheets/zh-theme.css
+
+extra_javascript:
+  - assets/javascripts/zh-theme.js
+
+# 模板源文件只供主题使用，不发布到网站
+exclude_docs: |
+  overrides/
 
 nav:
   - Welcome!: index.md
   - About Me: cv.md
   - Publications: pubs.md
   - Contact: contact.md
-  

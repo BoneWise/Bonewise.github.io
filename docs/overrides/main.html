@@ -1,0 +1,32 @@
+{#-
+  全站模板（在 Material 基础模板上扩展）
+  - 顶部横幅：partials/zh-banner.html
+  - 左侧个人卡：partials/zh-profile.html
+  - 悬浮导航：partials/header.html
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <link rel="preload" href="{{ 'assets/fonts/inter-latin.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ 'assets/fonts/cormorant-latin.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("zh-js");</script>
+{% endblock %}
+
+{% block hero %}
+  {% include "partials/zh-banner.html" %}
+{% endblock %}
+
+{% block container %}
+  <div class="zh-layout{% if page.is_homepage %} zh-layout--home{% endif %}">
+    <aside class="zh-aside" aria-label="Profile">
+      {% include "partials/zh-profile.html" %}
+    </aside>
+    <div class="md-content zh-main" data-md-component="content">
+      <article class="md-content__inner md-typeset{% if not page.is_homepage %} zh-card zh-page{% endif %}">
+        {% block content %}
+          {% include "partials/content.html" %}
+        {% endblock %}
+      </article>
+    </div>
+  </div>
+{% endblock %}

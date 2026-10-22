@@ -1,0 +1,21 @@
+{#- 侧栏个人卡（所有页面共用） -#}
+{% set zh = config.extra.zh or {} %}
+<div class="zh-card zh-profile">
+  <div class="zh-profile__avatar" aria-hidden="true"><span>哲</span></div>
+  <p class="zh-profile__name">Zhe Hu <span lang="zh-Hans">胡哲</span></p>
+  <p class="zh-profile__role">M2 Student in Neuroscience</p>
+  <ul class="zh-profile__facts">
+    <li>{% include ".icons/material/map-marker-outline.svg" %}<span>From China</span></li>
+    <li>{% include ".icons/material/flask-outline.svg" %}<span><a href="https://sites.google.com/view/szklab" target="_blank" rel="noopener noreferrer">Suzuki Lab</a>, Japan</span></li>
+    <li>{% include ".icons/material/clock-outline.svg" %}<span>Tokyo <time class="zh-tokyo-time">--:--</time></span></li>
+  </ul>
+  <div class="zh-profile__links">
+    <a href="{{ 'contact/' | url }}" title="Contact" aria-label="Contact">{% include ".icons/material/email-outline.svg" %}</a>
+    {% if zh.github %}
+      <a href="{{ zh.github }}" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener noreferrer">{% include ".icons/fontawesome/brands/github.svg" %}</a>
+    {% endif %}
+    {% if zh.notes %}
+      <a href="{{ zh.notes }}" title="Reading notes on Notion" aria-label="Reading notes on Notion" target="_blank" rel="noopener noreferrer">{% include ".icons/simple/notion.svg" %}</a>
+    {% endif %}
+  </div>
+</div>

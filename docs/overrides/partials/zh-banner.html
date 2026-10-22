@@ -1,0 +1,28 @@
+{#-
+  顶部横幅：默认由画布绘制（夜 = 紫色星空，昼 = 晨空远山），并有少量落花。
+  想换成自己的图：在 mkdocs.yml 的 extra.zh.banner_night / banner_day 填图片路径。
+-#}
+{% set zh = config.extra.zh or {} %}
+<section class="zh-banner{% if page.is_homepage %} zh-banner--home{% endif %}" aria-label="Banner">
+  <div class="zh-banner__art" aria-hidden="true">
+    {% if zh.banner_night %}
+      <div class="zh-banner__img zh-only-night" style="background-image: url('{{ zh.banner_night | url }}')"></div>
+    {% endif %}
+    {% if zh.banner_day %}
+      <div class="zh-banner__img zh-only-day" style="background-image: url('{{ zh.banner_day | url }}')"></div>
+    {% endif %}
+    <canvas class="zh-banner__sky" data-image-night="{{ 1 if zh.banner_night else 0 }}" data-image-day="{{ 1 if zh.banner_day else 0 }}"></canvas>
+    <div class="zh-banner__shade"></div>
+  </div>
+
+  {% if page.is_homepage %}
+    <div class="zh-banner__inner md-grid">
+      <p class="zh-banner__eyebrow">Computational Neuroscience <i></i> Machine Learning</p>
+      <h1 class="zh-banner__name">Zhe Hu <span lang="zh-Hans">胡 哲</span></h1>
+      <p class="zh-banner__sub"><span>M2 Student in Neuroscience</span><span class="zh-sep" aria-hidden="true">·</span><span>Suzuki Lab, Japan</span></p>
+    </div>
+    <a class="zh-banner__down" href="#welcome" aria-label="Scroll down">
+      {% include ".icons/material/chevron-down.svg" %}
+    </a>
+  {% endif %}
+</section>
