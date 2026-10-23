@@ -5,7 +5,7 @@ hide:
 
 # Contact Me
 
-I'm always happy to connect with fellow researchers, students, and anyone interested in neuroscience and machine learning!
+I'm always happy to connect with fellow researchers, students, and anyone interested in NeuroAI and brain–computer interfaces!
 
 <div class="zh-contact">
   <a class="zh-contact__item" id="zh-mail" href="#">

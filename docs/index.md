@@ -13,23 +13,37 @@ hide:
 <section class="zh-card zh-reveal" id="welcome" markdown="0">
   <p class="zh-kicker">Welcome <span lang="ja">ようこそ</span></p>
   <h2 class="zh-title">Research Interests</h2>
-  <p class="zh-lead">I'm passionate about understanding the brain through computational approaches.</p>
+  <p class="zh-lead">I'm passionate about understanding the brain through computational approaches, with a main focus on NeuroAI and a growing interest in brain–computer interfaces.</p>
   <ul class="zh-tags">
+    <li>NeuroAI</li>
     <li>Machine Learning</li>
     <li>Computational Neuroscience</li>
-    <li>Data Analysis</li>
+    <li>Brain–Computer Interfaces</li>
   </ul>
 </section>
 
-<section class="zh-card zh-project zh-reveal" id="ongoing" markdown="0">
-  <div class="zh-project__body">
-    <h2 class="zh-title">Ongoing Research</h2>
-    <p class="zh-chip"><i></i>Ongoing research project</p>
-    <h3 class="zh-project__name">Decoding Food Preferences from fMRI with Deep Learning: What Drives Prediction Across Individuals?</h3>
-    <a class="zh-link" href="https://github.com/BoneWise/food-preference-fmri" target="_blank" rel="noopener noreferrer">Code and results repository <span aria-hidden="true">→</span></a>
+<section class="zh-card zh-reveal" id="ongoing" markdown="0">
+  <h2 class="zh-title">Ongoing Research</h2>
+  <div class="zh-project">
+  <div class="zh-project__list">
+    <article class="zh-project__entry">
+      <h3 class="zh-project__name">Whole-Brain fMRI Decoding of Subjective Food Value: Cross-Participant Generalization and Spatial Attribution</h3>
+      <a class="zh-link" href="https://github.com/BoneWise/food-decoding-fmri" target="_blank" rel="noopener noreferrer">Code, results and manuscript <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="zh-project__entry">
+      <h3 class="zh-project__name">Food Representations in Vision and Vision–Language Models</h3>
+      <a class="zh-link" href="https://github.com/BoneWise/foodLLM" target="_blank" rel="noopener noreferrer">Results and methods <span aria-hidden="true">→</span></a>
+    </article>
   </div>
   <div class="zh-project__cover" aria-hidden="true">
+    <div class="zh-project__portrait zh-only-day">
+      <img src="assets/images/characters/kuon-portrait.png" data-portrait="day" data-crop="0,0,1,1" width="300" height="300" alt="" decoding="async">
+    </div>
+    <div class="zh-project__portrait zh-only-night">
+      <img src="assets/images/characters/homura-portrait.png" data-portrait="night" data-crop="0,0,1,1" width="256" height="256" alt="" decoding="async">
+    </div>
     <canvas class="zh-voxels"></canvas>
+  </div>
   </div>
 </section>
 

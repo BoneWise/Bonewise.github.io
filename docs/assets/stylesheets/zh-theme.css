@@ -226,6 +226,22 @@ body[data-md-color-scheme="default"] .zh-only-night { display: none !important; 
   background-position: center 35%;
 }
 .zh-banner__sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.zh-banner__cast { position: absolute; inset: 0; pointer-events: none; }
+.zh-banner__character {
+  position: absolute;
+  right: 3%;
+  top: 4.4rem;
+  bottom: 1rem;
+  width: 37%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 68%, transparent 100%);
+          mask-image: linear-gradient(#000 68%, transparent 100%);
+}
+.zh-banner__character img { position: absolute; max-width: none; height: auto; }
+.zh-banner__character--kuon img { width: 100%; top: 0; left: 0; }
+/* 官方图含两种服装，用视口裁切保留左侧的魔法少女形象。 */
+.zh-banner__character--homura img { width: 230%; top: -7%; left: -27%; }
+.zh-banner:not(.zh-banner--home) .zh-banner__character { width: 25%; right: 8%; opacity: .8; }
 .zh-banner__shade {
   position: absolute;
   inset: 0;
@@ -235,11 +251,11 @@ body[data-md-color-scheme="default"] .zh-only-night { display: none !important; 
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
-  padding: calc(var(--zh-header-h) + 1rem) 1.2rem 5.5rem;
-  text-align: center;
+  padding: calc(var(--zh-header-h) + 1rem) 1.2rem 5.5rem 3rem;
+  text-align: left;
   color: var(--zh-banner-text);
 }
 .zh-banner__eyebrow,
@@ -247,6 +263,8 @@ body[data-md-color-scheme="default"] .zh-only-night { display: none !important; 
 .zh-banner__sub { opacity: 0; animation: zh-up 1.1s var(--zh-ease) forwards; }
 .zh-banner__eyebrow {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 60%;
   align-items: center;
   gap: .7rem;
   margin: 0 0 .9rem;
@@ -283,6 +301,7 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 }
 .zh-banner__sub {
   margin: 1.2rem 0 0;
+  max-width: 58%;
   font-size: .82rem;
   letter-spacing: .04em;
   color: var(--zh-banner-sub);
@@ -394,7 +413,9 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 .md-typeset ul.zh-tags li::before { display: none; }
 
 /* Project */
-.zh-project { display: grid; grid-template-columns: minmax(0, 1fr) 12.5rem; gap: 1.4rem; align-items: stretch; }
+.zh-project { display: grid; grid-template-columns: minmax(0, 1fr) 10rem; gap: 1rem; align-items: center; }
+.zh-project__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.zh-project__entry { display: flex; flex-direction: column; min-width: 0; padding: 1rem; border: 1px solid var(--zh-line); border-radius: 14px; background: var(--zh-bg); }
 .md-typeset .zh-chip {
   display: inline-flex;
   align-items: center;
@@ -409,18 +430,24 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 }
 .zh-chip i { position: relative; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; }
 .zh-chip i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: currentColor; animation: zh-ping 2s var(--zh-ease) infinite; }
-.md-typeset .zh-project__name { margin: .8rem 0 .9rem; font-size: .98rem; font-weight: 650; line-height: 1.5; letter-spacing: 0; color: var(--zh-text); }
+.md-typeset .zh-project__name { margin: 0 0 1.1rem; font-size: .85rem; font-weight: 650; line-height: 1.5; letter-spacing: 0; color: var(--zh-text); }
+.zh-project__entry .zh-link { margin-top: auto; }
 .md-typeset .zh-link { font-size: .74rem; font-weight: 600; }
 .md-typeset .zh-link span { display: inline-block; transition: transform .3s var(--zh-ease); }
 .md-typeset .zh-link:hover span { transform: translateX(3px); }
 .zh-project__cover {
   position: relative;
-  min-height: 9.5rem;
+  min-height: 13rem;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--zh-accent-soft);
+  background: radial-gradient(ellipse at 50% 35%, var(--zh-accent-soft), transparent 75%), var(--zh-bg);
+  border: 1px solid var(--zh-line);
 }
-.zh-voxels { position: absolute; inset: 0; width: 100%; height: 100%; }
+.zh-project__portrait { position: absolute; inset: .4rem; overflow: hidden; }
+.zh-project__portrait img { width: 100%; height: 100%; object-fit: contain; }
+.zh-project__cover.is-voxel-ready .zh-project__portrait { visibility: hidden; }
+.zh-voxels { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .4s; }
+.zh-project__cover.is-voxel-ready .zh-voxels { opacity: 1; }
 
 /* Notes */
 .md-typeset .zh-notes__link {
@@ -601,14 +628,23 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-aside { position: static; order: 2; }
   .zh-layout:not(.zh-layout--home) .zh-aside { display: none; }
   .zh-project { grid-template-columns: 1fr; }
-  .zh-project__cover { order: -1; min-height: 8rem; }
+  .zh-project__cover { min-height: 15rem; width: min(100%, 18rem); justify-self: center; }
+  .zh-banner__inner { padding-left: 1.5rem; }
+  .zh-banner__eyebrow { max-width: 17rem; flex-wrap: wrap; }
 }
 @media screen and (max-width: 44.9844em) {
   :root { --zh-header-gap: .5rem; }
   .zh-banner { height: 17rem; }
   .zh-banner--home { height: 72svh; min-height: 25rem; }
+  .zh-banner--home .zh-banner__inner { justify-content: flex-start; padding: 6rem 1.2rem 0; }
+  .zh-banner__character { right: -1rem; top: 9rem; bottom: 0; width: 58%; opacity: .82; }
+  .zh-banner__character--homura { right: -1.5rem; }
+  .zh-banner:not(.zh-banner--home) .zh-banner__character { top: 4rem; width: 40%; right: 3%; }
+  .zh-banner__name { font-size: 3rem; }
+  .zh-banner__name span { text-indent: 0; }
+  .zh-banner__sub { max-width: 52%; font-size: .68rem; margin-top: 1rem; }
   .zh-layout { padding: 0 .45rem; }
-  .zh-banner__eyebrow { flex-direction: column; gap: .35rem; letter-spacing: .22em; }
+  .zh-banner__eyebrow { flex-direction: column; align-items: flex-start; gap: .35rem; letter-spacing: .16em; font-size: .5rem; }
   .zh-banner__eyebrow i { display: none; }
   .zh-banner__sub span { display: block; }
   .zh-banner__sub .zh-sep { display: none; }
@@ -616,6 +652,10 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-main .md-content__inner.zh-page { padding: 1.5rem 1.3rem 1.6rem; }
   .zh-page h1 { font-size: 1.85rem; }
   .zh-footer__inner { text-align: center; }
+}
+
+@media screen and (max-width: 30em) {
+  .zh-project__list { grid-template-columns: 1fr; }
 }
 
 /* ---------- Reduced motion ---------- */

@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zhe Hu · 页面动效（克制版）
    - 横幅画布：夜 = 紫色星空 + 银河；昼 = 晨空 + 云 + 远山；两者都有少量落花
-   - 卡片淡入、昼夜切换圆形转场、东京时间、体素小动画
+   - 卡片淡入、昼夜切换圆形转场、东京时间、昼夜人物方阵
    ========================================================================== */
 (function () {
   "use strict";
@@ -446,81 +446,137 @@
     }
   })();
 
-  /* ---------- 体素小动画（示意，非真实数据） ---------- */
+  /* ---------- 人物方阵：原图采样 + 明暗流动（装饰，非研究数据） ---------- */
   (function voxels() {
     var vox = document.querySelector(".zh-voxels");
     if (!vox || !vox.getContext) return;
     var g = vox.getContext("2d");
-    var vw = 0, vh = 0, pixelRatio = 0, cells = [], visible = false, t = 0, last = 0;
-    var blobs = [
-      { ax: 0.32, ay: 0.28, fx: 0.00031, fy: 0.00043, p: 0 },
-      { ax: 0.28, ay: 0.34, fx: 0.00047, fy: 0.00029, p: 2.1 },
-      { ax: 0.36, ay: 0.22, fx: 0.00023, fy: 0.00051, p: 4.2 }
-    ];
+    if (!g) return;
+    var cover = vox.closest(".zh-project__cover");
+    var sample = document.createElement("canvas");
+    var sx = sample.getContext("2d", { willReadFrequently: true });
+    if (!sx) return;
+    var portraits = {}, cache = {}, cells = [];
+    var vw = 0, vh = 0, pixelRatio = 0, step = 0;
+    var visible = false, t = 0, last = 0, raf = 0;
+
+    function buildPortrait() {
+      cells = [];
+      cover.classList.remove("is-voxel-ready");
+      var img = portraits[current];
+      if (!vw || !vh || !img || !img.complete || !img.naturalWidth) return;
+      if (cache[current]) {
+        cells = cache[current];
+      } else {
+        // 64–88 列，比原先约 18 列的轮廓保留更多五官细节。
+        var cols = Math.max(64, Math.min(88, Math.round(vw / 3.6)));
+        step = (vw - 16) / cols;
+        var rows = Math.max(1, Math.floor((vh - 16) / step));
+        sample.width = cols; sample.height = rows;
+        var crop = img.getAttribute("data-crop").split(",").map(Number);
+        var iw = img.naturalWidth, ih = img.naturalHeight;
+        var cw = crop[2] * iw, ch = crop[3] * ih;
+        var scale = Math.min(cols / cw, rows / ch);
+        var dw = cw * scale, dh = ch * scale;
+        sx.clearRect(0, 0, cols, rows);
+        sx.imageSmoothingEnabled = true;
+        sx.imageSmoothingQuality = "high";
+        try {
+          sx.drawImage(img, crop[0] * iw, crop[1] * ih, cw, ch, (cols - dw) / 2, (rows - dh) / 2, dw, dh);
+          var pixels = sx.getImageData(0, 0, cols, rows).data;
+          for (var y = 0; y < rows; y++) {
+            for (var x = 0; x < cols; x++) {
+              var i = (y * cols + x) * 4;
+              if (pixels[i + 3] < 24) continue;
+              cells.push({
+                x: 8 + x * step, y: 8 + y * step,
+                nx: x / cols, ny: y / rows,
+                color: "rgb(" + pixels[i] + "," + pixels[i + 1] + "," + pixels[i + 2] + ")",
+                alpha: pixels[i + 3] / 255,
+                phase: x * .19 + y * .12
+              });
+            }
+          }
+          cache[current] = cells;
+        } catch (err) {
+          // 图片不可采样时仍显示原图，避免留下空白卡片。
+          return;
+        }
+      }
+      draw();
+      cover.classList.toggle("is-voxel-ready", cells.length > 0);
+    }
+
     function layout() {
       var r = vox.getBoundingClientRect();
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
       if (!r.width || !r.height) return;
-      // 与横幅一样，只有元素尺寸或像素比例改变时才重设画布。
       if (r.width === vw && r.height === vh && dpr === pixelRatio) return;
       vw = r.width; vh = r.height; pixelRatio = dpr;
       vox.width = Math.round(vw * dpr); vox.height = Math.round(vh * dpr);
       g.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cells = [];
-      var size = Math.max(6, Math.min(10, Math.round(Math.min(vw, vh) / 18)));
-      var cx = vw / 2, cy = vh / 2, a = Math.min(vw * 0.4, vh * 0.33), b = vh * 0.43;
-      for (var y = cy - b; y <= cy + b; y += size) {
-        for (var x = cx - a; x <= cx + a; x += size) {
-          var nx = (x + size / 2 - cx) / a, ny = (y + size / 2 - cy) / b;
-          if ((nx * nx) / (1 - 0.14 * ny) + ny * ny > 1) continue;
-          if (Math.abs(nx) < 0.06 && (ny < -0.28 || ny > 0.62)) continue; // 纵裂
-          var vx2 = (Math.abs(nx) - 0.2) / 0.1, vy2 = (ny - 0.02) / 0.22;
-          if (vx2 * vx2 + vy2 * vy2 < 1) continue;
-          cells.push({ x: x, y: y, nx: nx, ny: ny, s: size - 2 });
-        }
-      }
-      draw();
+      cache = {};
+      buildPortrait();
     }
+
     function draw() {
-      var night = current === "night";
       g.clearRect(0, 0, vw, vh);
+      var bx = .5 + Math.sin(t * .00047) * .38;
+      var by = .5 + Math.cos(t * .00035) * .38;
       for (var i = 0; i < cells.length; i++) {
-        var c = cells[i], v = 0;
-        for (var j = 0; j < blobs.length; j++) {
-          var bl = blobs[j];
-          var dx = c.nx - Math.sin(t * bl.fx + bl.p) * bl.ax * 2.2;
-          var dy = c.ny - Math.cos(t * bl.fy + bl.p * 1.3) * bl.ay * 2.2;
-          v += Math.exp(-(dx * dx + dy * dy) / 0.07);
-        }
-        v = Math.min(1, v);
-        var base = 0.1 + 0.06 * (1 - (c.nx * c.nx + c.ny * c.ny));
-        g.fillStyle = night
-          ? "rgba(" + Math.round(150 + 90 * v) + "," + Math.round(120 + 70 * v) + ",255," + (base + v * 0.8).toFixed(3) + ")"
-          : "rgba(" + Math.round(150 + 39 * v) + "," + Math.round(90 - 20 * v) + "," + Math.round(80 - 24 * v) + "," + (base + v * 0.75).toFixed(3) + ")";
-        g.beginPath();
-        if (g.roundRect) g.roundRect(c.x + 1, c.y + 1, c.s, c.s, 2); else g.rect(c.x + 1, c.y + 1, c.s, c.s);
-        g.fill();
+        var c = cells[i];
+        var dx = c.nx - bx, dy = c.ny - by;
+        var light = reduced ? 1 : Math.exp(-(dx * dx + dy * dy) / .1);
+        var wave = reduced ? 1 : (1 + Math.sin(t * .0018 + c.phase)) / 2;
+        var size = step * (.79 + .08 * wave + .06 * light);
+        g.globalAlpha = c.alpha * (.7 + .2 * wave + .1 * light);
+        g.fillStyle = c.color;
+        g.fillRect(c.x + (step - size) / 2, c.y + (step - size) / 2, size, size);
+      }
+      g.globalAlpha = 1;
+    }
+
+    function loop(ts) {
+      raf = 0;
+      if (!visible || document.hidden || reduced) return;
+      // 30 fps 足够表现轻微流光，同时限制高密度方阵的开销。
+      if (!last || ts - last >= 1000 / 30) {
+        t += last ? Math.min(80, ts - last) : 0;
+        last = ts;
+        draw();
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    function syncAnimation() {
+      if (!visible || document.hidden || reduced) {
+        cancelAnimationFrame(raf); raf = 0; last = 0;
+      } else if (!raf) {
+        last = 0; raf = requestAnimationFrame(loop);
       }
     }
-    function loop(ts) {
-      requestAnimationFrame(loop);
-      var dt = last ? Math.min(50, ts - last) : 16;
-      last = ts;
-      if (!visible) return;
-      t += dt;
-      draw();
-    }
-    layout();
-    var layoutTimer;
-    window.addEventListener("resize", function () {
-      clearTimeout(layoutTimer);
-      layoutTimer = setTimeout(layout, 200);
+
+    cover.querySelectorAll("[data-portrait]").forEach(function (img) {
+      var key = img.getAttribute("data-portrait");
+      portraits[key] = img;
+      img.addEventListener("load", function () {
+        delete cache[key];
+        if (key === current) buildPortrait();
+      });
+      img.addEventListener("error", function () {
+        if (key === current) cover.classList.remove("is-voxel-ready");
+      });
     });
-    onScheme(draw);
+    layout();
+    if ("ResizeObserver" in window) new ResizeObserver(layout).observe(cover);
+    window.addEventListener("resize", layout);
+    onScheme(buildPortrait);
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.05 }).observe(vox);
-    } else { visible = true; }
-    if (!reduced) requestAnimationFrame(loop);
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        syncAnimation();
+      }, { threshold: 0.05 }).observe(vox);
+    } else { visible = true; syncAnimation(); }
+    document.addEventListener("visibilitychange", syncAnimation);
   })();
 
 })();

@@ -12,12 +12,20 @@
       <div class="zh-banner__img zh-only-day" style="background-image: url('{{ zh.banner_day | url }}')"></div>
     {% endif %}
     <canvas class="zh-banner__sky" data-image-night="{{ 1 if zh.banner_night else 0 }}" data-image-day="{{ 1 if zh.banner_day else 0 }}"></canvas>
+    <div class="zh-banner__cast md-grid">
+      <div class="zh-banner__character zh-banner__character--kuon zh-only-day">
+        <img src="{{ 'assets/images/characters/kuon.png' | url }}" width="358" height="424" alt="" decoding="async">
+      </div>
+      <div class="zh-banner__character zh-banner__character--homura zh-only-night">
+        <img src="{{ 'assets/images/characters/homura.png' | url }}" width="780" height="832" alt="" decoding="async">
+      </div>
+    </div>
     <div class="zh-banner__shade"></div>
   </div>
 
   {% if page.is_homepage %}
     <div class="zh-banner__inner md-grid">
-      <p class="zh-banner__eyebrow">Computational Neuroscience <i></i> Machine Learning</p>
+      <p class="zh-banner__eyebrow"><span>NeuroAI</span><i></i><span>Computational Neuroscience</span></p>
       <h1 class="zh-banner__name">Zhe Hu <span lang="zh-Hans">胡 哲</span></h1>
       <p class="zh-banner__sub"><span>M2 Student in Neuroscience</span><span class="zh-sep" aria-hidden="true">·</span><span>Suzuki Lab, Japan</span></p>
     </div>

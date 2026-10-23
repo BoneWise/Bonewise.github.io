@@ -1,0 +1,27 @@
+Character artwork sources
+Retrieved: 2026-10-24 (Asia/Tokyo)
+
+kuon.png — Kuon / Utawarerumono: Mask of Deception
+Source page: https://aquaplus.jp/uta/itsu/
+Original image: https://aquaplus.jp/uta/itsu/images/character/figure02.png
+Copyright: AQUAPLUS
+
+homura.png — Homura Akemi / Puella Magi Madoka Magica
+Source page: https://www.madoka-magica.com/tv/youtube-streaming/character/
+Original image: https://www.madoka-magica.com/tv/youtube-streaming/assets/img/_in/chara02.png
+Copyright: Magica Quartet / Aniplex・Madoka Partners・MBS
+
+Files are unchanged official-site images, not original artwork by the site owner.
+The original rights holders retain their rights; source attribution is not a license.
+Banner and portrait crops are applied only at display time with CSS / Canvas.
+The night banner uses the magical-girl outfit on the left of the source image.
+
+kuon-portrait.png — Kuon, alternate anime portrait for the pixel matrix
+Source page: https://utawarerumono.jp/2nd/
+Original image: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon02.png
+Copyright: うたわれるもの偽りの仮面製作委員会
+
+homura-portrait.png — Homura, alternate chibi portrait for the pixel matrix
+Source page: https://www.madoka-magica.com/rebellion/special/present01.html
+Original image: https://www.madoka-magica.com/rebellion/special/img/present01/icon_homura.png
+Copyright: Magica Quartet / Aniplex・Madoka Movie Project Rebellion
