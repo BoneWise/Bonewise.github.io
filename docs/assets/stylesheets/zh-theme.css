@@ -412,8 +412,10 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 }
 .md-typeset ul.zh-tags li::before { display: none; }
 
-/* Project */
-.zh-project { display: grid; grid-template-columns: minmax(0, 1fr) 10rem; gap: 1rem; align-items: center; }
+/* Project：左栏为标题和项目，右栏方阵单独成栏，保持正方形并与左栏垂直居中 */
+#ongoing { container-type: inline-size; }
+.zh-project { display: grid; grid-template-columns: minmax(0, 1fr) 12.5rem; gap: 1.4rem; align-items: center; }
+.zh-project__body { min-width: 0; container-type: inline-size; }
 .zh-project__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
 .zh-project__entry { display: flex; flex-direction: column; min-width: 0; padding: 1rem; border: 1px solid var(--zh-line); border-radius: 14px; background: var(--zh-bg); }
 .md-typeset .zh-chip {
@@ -437,7 +439,7 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 .md-typeset .zh-link:hover span { transform: translateX(3px); }
 .zh-project__cover {
   position: relative;
-  min-height: 13rem;
+  aspect-ratio: 1;
   border-radius: 14px;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 35%, var(--zh-accent-soft), transparent 75%), var(--zh-bg);
@@ -628,7 +630,7 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-aside { position: static; order: 2; }
   .zh-layout:not(.zh-layout--home) .zh-aside { display: none; }
   .zh-project { grid-template-columns: 1fr; }
-  .zh-project__cover { min-height: 15rem; width: min(100%, 18rem); justify-self: center; }
+  .zh-project__cover { width: min(100%, 15rem); justify-self: center; }
   .zh-banner__inner { padding-left: 1.5rem; }
   .zh-banner__eyebrow { max-width: 17rem; flex-wrap: wrap; }
 }
@@ -654,7 +656,12 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-footer__inner { text-align: center; }
 }
 
-@media screen and (max-width: 30em) {
+/* 卡片较窄时方阵移到项目下方；左栏较窄时两个项目上下排列 */
+@container (max-width: 30rem) {
+  .zh-project { grid-template-columns: 1fr; }
+  .zh-project__cover { width: min(100%, 15rem); justify-self: center; }
+}
+@container (max-width: 30rem) {
   .zh-project__list { grid-template-columns: 1fr; }
 }
 

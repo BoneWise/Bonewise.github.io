@@ -23,8 +23,9 @@ hide:
 </section>
 
 <section class="zh-card zh-reveal" id="ongoing" markdown="0">
-  <h2 class="zh-title">Ongoing Research</h2>
   <div class="zh-project">
+  <div class="zh-project__body">
+  <h2 class="zh-title">Ongoing Research</h2>
   <div class="zh-project__list">
     <article class="zh-project__entry">
       <h3 class="zh-project__name">Whole-Brain fMRI Decoding of Subjective Food Value: Cross-Participant Generalization and Spatial Attribution</h3>
@@ -34,6 +35,7 @@ hide:
       <h3 class="zh-project__name">Food Representations in Vision and Vision–Language Models</h3>
       <a class="zh-link" href="https://github.com/BoneWise/foodLLM" target="_blank" rel="noopener noreferrer">Results and methods <span aria-hidden="true">→</span></a>
     </article>
+  </div>
   </div>
   <div class="zh-project__cover" aria-hidden="true">
     <div class="zh-project__portrait zh-only-day">
