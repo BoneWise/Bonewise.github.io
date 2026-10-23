@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zhe Hu · 页面动效（克制版）
    - 横幅画布：夜 = 紫色星空 + 银河；昼 = 晨空 + 云 + 远山；两者都有少量落花
-   - 卡片淡入、昼夜切换圆形转场、东京时间、体素小动画、Giscus 主题同步
+   - 卡片淡入、昼夜切换圆形转场、东京时间、体素小动画
    ========================================================================== */
 (function () {
   "use strict";
@@ -118,8 +118,6 @@
     var canvas = document.querySelector(".zh-banner__sky");
     if (!canvas || !canvas.getContext) return;
     var bannerEl = canvas.closest(".zh-banner");
-    var art = bannerEl.querySelector(".zh-banner__art");
-    var inner = bannerEl.querySelector(".zh-banner__inner");
     var ctx = canvas.getContext("2d");
     var bg = document.createElement("canvas");
     var bgx = bg.getContext("2d");
@@ -333,9 +331,11 @@
 
     function resize() {
       var rect = bannerEl.getBoundingClientRect();
-      W = Math.max(1, Math.round(rect.width));
-      H = Math.max(1, Math.round(rect.height));
-      DPR = Math.min(window.devicePixelRatio || 1, 2);
+      var nw = Math.max(1, Math.round(rect.width)), nh = Math.max(1, Math.round(rect.height));
+      var nd = Math.min(window.devicePixelRatio || 1, 1.5);
+      // 手机滚动时地址栏伸缩也会触发 resize；尺寸没变就不重画，避免画布被清空闪一下
+      if (nw === W && nh === H && nd === DPR) return;
+      W = nw; H = nh; DPR = nd;
       [canvas, bg].forEach(function (c) { c.width = Math.round(W * DPR); c.height = Math.round(H * DPR); });
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       bgx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -443,21 +443,6 @@
       });
       raf = requestAnimationFrame(loop);
 
-      // 轻微视差
-      var ticking = false;
-      window.addEventListener("scroll", function () {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(function () {
-          ticking = false;
-          var y = Math.min(scrollY, H);
-          art.style.transform = "translate3d(0," + (y * 0.32).toFixed(1) + "px,0)";
-          if (inner) {
-            inner.style.opacity = Math.max(0, 1 - y / (H * 0.6)).toFixed(3);
-            inner.style.transform = "translate3d(0," + (y * 0.18).toFixed(1) + "px,0)";
-          }
-        });
-      }, { passive: true });
     }
   })();
 
@@ -466,7 +451,7 @@
     var vox = document.querySelector(".zh-voxels");
     if (!vox || !vox.getContext) return;
     var g = vox.getContext("2d");
-    var vw = 0, vh = 0, cells = [], visible = false, t = 0, last = 0;
+    var vw = 0, vh = 0, pixelRatio = 0, cells = [], visible = false, t = 0, last = 0;
     var blobs = [
       { ax: 0.32, ay: 0.28, fx: 0.00031, fy: 0.00043, p: 0 },
       { ax: 0.28, ay: 0.34, fx: 0.00047, fy: 0.00029, p: 2.1 },
@@ -475,8 +460,10 @@
     function layout() {
       var r = vox.getBoundingClientRect();
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      vw = r.width; vh = r.height;
-      if (!vw || !vh) return;
+      if (!r.width || !r.height) return;
+      // 与横幅一样，只有元素尺寸或像素比例改变时才重设画布。
+      if (r.width === vw && r.height === vh && dpr === pixelRatio) return;
+      vw = r.width; vh = r.height; pixelRatio = dpr;
       vox.width = Math.round(vw * dpr); vox.height = Math.round(vh * dpr);
       g.setTransform(dpr, 0, 0, dpr, 0, 0);
       cells = [];
@@ -524,7 +511,11 @@
       draw();
     }
     layout();
-    window.addEventListener("resize", function () { setTimeout(layout, 200); });
+    var layoutTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(layoutTimer);
+      layoutTimer = setTimeout(layout, 200);
+    });
     onScheme(draw);
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.05 }).observe(vox);
@@ -532,17 +523,4 @@
     if (!reduced) requestAnimationFrame(loop);
   })();
 
-  /* ---------- Giscus 主题同步 ---------- */
-  function syncGiscus() {
-    var frame = document.querySelector("iframe.giscus-frame");
-    if (!frame || !frame.contentWindow) return;
-    frame.contentWindow.postMessage({ giscus: { setConfig: { theme: current === "night" ? "transparent_dark" : "light" } } }, "https://giscus.app");
-  }
-  var giscusReady = false;
-  window.addEventListener("message", function (e) {
-    if (e.origin !== "https://giscus.app" || giscusReady) return;
-    giscusReady = true;
-    syncGiscus();
-  });
-  onScheme(syncGiscus);
 })();

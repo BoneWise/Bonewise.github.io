@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# 本地构建与环境
+site/
+.local-site/
+.venv/
+.cache/
+
+# 不发布、不提交的本地文件
+_private/
+Claude outputs/

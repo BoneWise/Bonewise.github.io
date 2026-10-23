@@ -7,49 +7,20 @@ hide:
 
 I'm always happy to connect with fellow researchers, students, and anyone interested in neuroscience and machine learning!
 
----
+<div class="zh-contact">
+  <a class="zh-contact__item" id="zh-mail" href="#">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+    <span>Email</span>
+  </a>
+  <a class="zh-contact__item" href="https://github.com/BoneWise" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.4a3 3 0 0 0-.8-2.2c2.8-.3 5.8-1.4 5.8-6.2a4.8 4.8 0 0 0-1.3-3.3 4.5 4.5 0 0 0-.1-3.3s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.3 5.6 2.6 5.6 2.6a4.5 4.5 0 0 0-.1 3.3 4.8 4.8 0 0 0-1.3 3.3c0 4.8 3 5.9 5.8 6.2a3 3 0 0 0-.8 2.2V21"/></svg>
+    <span>GitHub · BoneWise</span>
+  </a>
+</div>
 
-## Email
-
-<script type="text/javascript">
-  const user2 = "huzhe";
-  const user421 = "3566";
-  const domain = "gmail.com";
-  document.write('<p class="zh-mail"><a href="mailto:' + user2 + user421+ '@' + domain + '">' + user2 + user421 + '@' + domain + '</a></p>');
-</script>
-
-Feel free to reach out for:
-
-- Research collaboration
-- Academic discussions
-- Questions about my work
-- General inquiries
-
----
-
-## Contact Form
-
-<iframe style="border:none;width:100%;min-height:500px;" id="contact-form-zegi0b" src="https://noteforms.com/forms/contact-form-zegi0b"></iframe><script type="text/javascript" onload="initEmbed('contact-form-zegi0b')" src="https://noteforms.com/widgets/iframe.min.js"></script>
-
----
-
-## Discussion
-
-Leave a comment or start a discussion below:
-
-<script src="https://giscus.app/client.js"
-        data-repo="BoneWise/Bonewise.github.io"
-        data-repo-id="R_kgDOO6cUYQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOO6cUYc4Crcnp"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
+<script>
+  (function () {
+    var user = "huzhe" + "3566", domain = "gmail.com", a = document.getElementById("zh-mail");
+    if (a) { a.href = "mailto:" + user + "@" + domain; a.lastElementChild.textContent = user + "@" + domain; }
+  })();
 </script>

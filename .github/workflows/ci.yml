@@ -1,127 +1,31 @@
-# name: ci 
-# on:
-#   push:
-#     branches:
-#       - master 
-#       - main
-# permissions:
-#   contents: write
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0
-#           sparse-checkout: |
-#             docs
-#             includes
-#       - uses: actions/setup-python@v4
-#         with:
-#           python-version: 3.x
-#       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-#       - uses: actions/cache@v3
-#         with:
-#           key: mkdocs-material-${ env.cache_id }
-#           path: .cache
-#           restore-keys: |
-#             mkdocs-material-
-#       - run: pip install mkdocs-git-revision-date-localized-plugin
-#       - run: pip install mkdocs-git-authors-plugin
-#       - run: pip install mkdocs-git-committers-plugin-2
-#       - run: pip install markdown-callouts
-#       # - run: pip install mkdocs-minify-plugin
-#       - run: pip install mkdocs-rss-plugin
-#       - run: pip install requests>=2.25.0
-#       - run: pip install python-dateutil>=2.8.0
-#       - run: pip install cachetools>=4.2.0
-#       # - run: pip install mkdocs-open-in-new-tab
-#       - run: pip install pymdown-extensions
-#       # - run: pip install mkdocs-glightbox
-#       # - run: pip install "mkdocs-material[imaging]"
-#       # - run: pip install mkdocs-statistics-plugin        
-#       - run: pip install mkdocs-material 
-#       - run: pip install --upgrade --force-reinstall mkdocs-material
-#       - run: mkdocs gh-deploy --force
+# 推送到 main 后自动构建并发布到 gh-pages 分支（huzhe3566.com）
+name: ci
 
-name: ci 
 on:
   push:
     branches:
-      - master 
       - main
-  # 禁止从 fork 仓库访问 secrets
-  pull_request:
-    types: [closed]
-    branches: [main, master]
+      - master
+
 permissions:
   contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          sparse-checkout: |
-            docs
-            includes
-            .ai_cache
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - name: Set cache ID
-        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v3
-        with:
-          key: mkdocs-material-${{ github.run_number }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install mkdocs-git-revision-date-localized-plugin
-      - run: pip install mkdocs-git-authors-plugin
-      - run: pip install mkdocs-git-committers-plugin-2
-      - run: pip install markdown-callouts
-      - run: pip install mkdocs-rss-plugin
-      - run: pip install requests>=2.25.0
-      - run: pip install python-dateutil>=2.8.0
-      - run: pip install cachetools>=4.2.0
-      - run: pip install python-dotenv>=0.19.0
-      - run: pip install Pillow
-      - run: pip install neoteroi-mkdocs
-      - run: pip install pymdown-extensions
-      - run: pip install mkdocs-material 
-      - run: pip install --upgrade --force-reinstall mkdocs-material
-      - name: Deploy with AI Summary
-        env:
-          # AI摘要开关控制
-          AI_SUMMARY_CI_ENABLED: 'true'           # CI部署环境启用AI摘要 (true=在CI中为文章生成AI摘要)
-          AI_SUMMARY_CI_ONLY_CACHE: 'false'       # CI部署不生成新摘要 (true=使用本地部署过的摘要缓存，不再重复调用API)
-          AI_SUMMARY_CI_FALLBACK: 'true'          # CI部署启用备用摘要 (true=API失败时生成离线基础摘要)
-          AI_SUMMARY_CACHE_ENABLED: 'true'        # 启用缓存功能
-          AI_SUMMARY_CACHE_EXPIRE_DAYS: '7'       # 缓存7天过期
-          AI_SUMMARY_CACHE_AUTO_CLEAN: 'true'     # 自动清理过期缓存
-          # AI_SUMMARY_LOCAL_ENABLED: 'false'       # 本地部署环境禁用AI摘要 (true=本地开发时也生成摘要)（不需要管这条）
-          # API密钥配置
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: mkdocs gh-deploy --force
-      
-      # 自动提交新生成的AI缓存文件
-      - name: Auto-commit AI cache (if any new files)
-        run: |
-          if [ -d ".ai_cache" ] && [ "$(ls -A .ai_cache 2>/dev/null)" ]; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add .ai_cache/
-            if ! git diff --cached --quiet; then
-              git commit -m "🤖 Auto-update AI summary cache [skip ci]"
-              git push
-              echo "✅ 自动提交了新的 AI 缓存文件"
-            else
-              echo "ℹ️ 没有新的缓存文件需要提交"
-            fi
-          else
-            echo "ℹ️ 没有找到缓存目录或缓存为空"
-          fi
 
+      - name: Configure Git credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: mkdocs gh-deploy --force --strict

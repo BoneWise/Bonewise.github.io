@@ -5,30 +5,9 @@ hide:
 
 # About Me
 
-## Academic Background
+## Education
 
-### Education
-
-- **M2 in Neuroscience** (Current)
-- Suzuki Lab, Japan
-- Focus: Computational Neuroscience and Machine Learning applications
-
----
-
-## Skills & Expertise
-
-### Technical Skills
-- Machine Learning
-- Data Analysis
-- Computational Modeling
-- Python Programming
-
-### Research Areas
-- Neuroscience
-- Computational Neuroscience
-- Neural Data Analysis
-
----
+- **M2 in Neuroscience** (Current) · Suzuki Lab, Japan
 
 ## Interests
 
@@ -36,10 +15,11 @@ hide:
 - Developing machine learning models for neuroscience
 - Bridging the gap between AI and neuroscience
 
----
+## Skills
 
-<!--
-<img src="/img/DSC_2833.JPG" width="900" alt="My photo">
--->
-
-*More details coming soon...*
+<ul class="zh-tags">
+  <li>Machine Learning</li>
+  <li>Data Analysis</li>
+  <li>Computational Modeling</li>
+  <li>Python Programming</li>
+</ul>

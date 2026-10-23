@@ -6,12 +6,5 @@
       <span aria-hidden="true">·</span>
       Built with <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">Material for MkDocs</a>
     </p>
-    <nav class="zh-footer__nav" aria-label="Footer">
-      {% for item in nav %}
-        {% if item.is_page %}
-          <a href="{{ item.url | url }}">{{ item.title }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
   </div>
 </footer>
