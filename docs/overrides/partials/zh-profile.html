@@ -19,3 +19,17 @@
     {% endif %}
   </div>
 </div>
+{#- 首页侧栏：像素人物方阵（装饰），单独成卡，不放进研究卡片 -#}
+{% if page.is_homepage %}
+<div class="zh-card zh-pixel" aria-hidden="true">
+  <div class="zh-pixel__cover">
+    <div class="zh-pixel__portrait zh-only-day">
+      <img src="{{ 'assets/images/characters/kuon-portrait.png' | url }}" data-portrait="day" data-crop="0,0,1,1" width="300" height="300" alt="" decoding="async">
+    </div>
+    <div class="zh-pixel__portrait zh-only-night">
+      <img src="{{ 'assets/images/characters/homura-portrait.png' | url }}" data-portrait="night" data-crop="0,0,1,1" width="256" height="256" alt="" decoding="async">
+    </div>
+    <canvas class="zh-voxels"></canvas>
+  </div>
+</div>
+{% endif %}

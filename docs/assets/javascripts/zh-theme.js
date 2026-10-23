@@ -452,7 +452,7 @@
     if (!vox || !vox.getContext) return;
     var g = vox.getContext("2d");
     if (!g) return;
-    var cover = vox.closest(".zh-project__cover");
+    var cover = vox.closest(".zh-pixel__cover");
     var sample = document.createElement("canvas");
     var sx = sample.getContext("2d", { willReadFrequently: true });
     if (!sx) return;

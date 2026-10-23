@@ -23,8 +23,6 @@ hide:
 </section>
 
 <section class="zh-card zh-reveal" id="ongoing" markdown="0">
-  <div class="zh-project">
-  <div class="zh-project__body">
   <h2 class="zh-title">Ongoing Research</h2>
   <div class="zh-project__list">
     <article class="zh-project__entry">
@@ -35,17 +33,6 @@ hide:
       <h3 class="zh-project__name">Food Representations in Vision and Vision–Language Models</h3>
       <a class="zh-link" href="https://github.com/BoneWise/foodLLM" target="_blank" rel="noopener noreferrer">Results and methods <span aria-hidden="true">→</span></a>
     </article>
-  </div>
-  </div>
-  <div class="zh-project__cover" aria-hidden="true">
-    <div class="zh-project__portrait zh-only-day">
-      <img src="assets/images/characters/kuon-portrait.png" data-portrait="day" data-crop="0,0,1,1" width="300" height="300" alt="" decoding="async">
-    </div>
-    <div class="zh-project__portrait zh-only-night">
-      <img src="assets/images/characters/homura-portrait.png" data-portrait="night" data-crop="0,0,1,1" width="256" height="256" alt="" decoding="async">
-    </div>
-    <canvas class="zh-voxels"></canvas>
-  </div>
   </div>
 </section>
 

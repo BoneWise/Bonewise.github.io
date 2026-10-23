@@ -412,10 +412,8 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 }
 .md-typeset ul.zh-tags li::before { display: none; }
 
-/* Project：左栏为标题和项目，右栏方阵单独成栏，保持正方形并与左栏垂直居中 */
+/* Project */
 #ongoing { container-type: inline-size; }
-.zh-project { display: grid; grid-template-columns: minmax(0, 1fr) 12.5rem; gap: 1.4rem; align-items: center; }
-.zh-project__body { min-width: 0; container-type: inline-size; }
 .zh-project__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
 .zh-project__entry { display: flex; flex-direction: column; min-width: 0; padding: 1rem; border: 1px solid var(--zh-line); border-radius: 14px; background: var(--zh-bg); }
 .md-typeset .zh-chip {
@@ -437,7 +435,10 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
 .md-typeset .zh-link { font-size: .74rem; font-weight: 600; }
 .md-typeset .zh-link span { display: inline-block; transition: transform .3s var(--zh-ease); }
 .md-typeset .zh-link:hover span { transform: translateX(3px); }
-.zh-project__cover {
+
+/* 侧栏像素人物方阵（装饰，独立成卡） */
+.zh-pixel { margin-top: 1.1rem; padding: .8rem; }
+.zh-pixel__cover {
   position: relative;
   aspect-ratio: 1;
   border-radius: 14px;
@@ -445,11 +446,11 @@ body[data-md-color-scheme="default"] .zh-banner__name { text-shadow: 0 2px 24px 
   background: radial-gradient(ellipse at 50% 35%, var(--zh-accent-soft), transparent 75%), var(--zh-bg);
   border: 1px solid var(--zh-line);
 }
-.zh-project__portrait { position: absolute; inset: .4rem; overflow: hidden; }
-.zh-project__portrait img { width: 100%; height: 100%; object-fit: contain; }
-.zh-project__cover.is-voxel-ready .zh-project__portrait { visibility: hidden; }
+.zh-pixel__portrait { position: absolute; inset: .4rem; overflow: hidden; }
+.zh-pixel__portrait img { width: 100%; height: 100%; object-fit: contain; }
+.zh-pixel__cover.is-voxel-ready .zh-pixel__portrait { visibility: hidden; }
 .zh-voxels { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .4s; }
-.zh-project__cover.is-voxel-ready .zh-voxels { opacity: 1; }
+.zh-pixel__cover.is-voxel-ready .zh-voxels { opacity: 1; }
 
 /* Notes */
 .md-typeset .zh-notes__link {
@@ -629,8 +630,7 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-layout { grid-template-columns: 1fr; }
   .zh-aside { position: static; order: 2; }
   .zh-layout:not(.zh-layout--home) .zh-aside { display: none; }
-  .zh-project { grid-template-columns: 1fr; }
-  .zh-project__cover { width: min(100%, 15rem); justify-self: center; }
+  .zh-pixel { width: min(100%, 24rem); margin-inline: auto; }
   .zh-banner__inner { padding-left: 1.5rem; }
   .zh-banner__eyebrow { max-width: 17rem; flex-wrap: wrap; }
 }
@@ -656,11 +656,7 @@ body[data-md-color-scheme="default"] .zh-profile__avatar span { font-family: var
   .zh-footer__inner { text-align: center; }
 }
 
-/* 卡片较窄时方阵移到项目下方；左栏较窄时两个项目上下排列 */
-@container (max-width: 30rem) {
-  .zh-project { grid-template-columns: 1fr; }
-  .zh-project__cover { width: min(100%, 15rem); justify-self: center; }
-}
+/* 研究卡片较窄时两个项目上下排列 */
 @container (max-width: 30rem) {
   .zh-project__list { grid-template-columns: 1fr; }
 }
