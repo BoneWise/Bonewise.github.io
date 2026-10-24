@@ -974,9 +974,7 @@ body[data-md-color-scheme="slate"] .zh-footer__mark i {
   opacity: .7;
   animation: zh-spin 30s linear infinite;
 }
-.zh-footer__copy,
-.zh-footer__credit { margin: 0; }
-.zh-footer__credit { font-size: .58rem; opacity: .8; }
+.zh-footer__copy { margin: 0; }
 .zh-footer__copy a { color: var(--zh-text-2); transition: color .2s; }
 .zh-footer__copy a:hover { color: var(--zh-accent); }
 
