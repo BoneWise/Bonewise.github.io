@@ -10,3 +10,6 @@ site/
 # 不发布、不提交的本地文件
 _private/
 Claude outputs/
+
+# 本地素材库（约 57 MB 官方图片原件），只用于选材，不提交到公开仓库
+materials/

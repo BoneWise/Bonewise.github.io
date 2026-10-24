@@ -37,6 +37,24 @@ extra:
     # 例如 assets/images/banner-night.jpg。留空则使用画布绘制的星空 / 晨空。
     banner_night: ""
     banner_day: ""
+    # 各页横幅人物：昼 = 久远（传颂之物），夜 = 晓美焰（魔法少女小圆）。路径相对 docs/。
+    # 换图时只改这里；位置与大小在 zh-theme.css 的「横幅人物」一节按页面微调。
+    cast:
+      home:    { day: assets/images/characters/banner/kuon-home.webp,     night: assets/images/characters/banner/homura-home.webp }
+      cv:      { day: assets/images/characters/banner/kuon-about.webp,    night: assets/images/characters/banner/homura-about.webp }
+      pubs:    { day: assets/images/characters/banner/kuon-research.webp, night: assets/images/characters/banner/homura-research.webp }
+      contact: { day: assets/images/characters/banner/kuon-contact.webp,  night: assets/images/characters/banner/homura-contact.webp }
+    # 侧栏像素方阵可轮换的头像（点击切换）
+    portraits:
+      day:
+        - { src: assets/images/characters/portraits/kuon-1.webp, name: "Kuon" }
+        - { src: assets/images/characters/portraits/kuon-2.webp, name: "Kuon" }
+        - { src: assets/images/characters/portraits/kuon-3.webp, name: "Kuon" }
+        - { src: assets/images/characters/portraits/kuon-4.webp, name: "Kuon" }
+      night:
+        - { src: assets/images/characters/portraits/homura-1.webp, name: "Homura" }
+        - { src: assets/images/characters/portraits/homura-2.webp, name: "Homura" }
+        - { src: assets/images/characters/portraits/homura-3.webp, name: "Homura" }
     github: https://github.com/BoneWise
     notes: https://www.notion.so/210b53648e9180d9816df03c3f8055f7?v=210b53648e9180d19a9d000ca3071a3f&source=copy_link
 
@@ -56,6 +74,10 @@ extra_javascript:
 # 模板源文件只供主题使用，不发布到网站
 exclude_docs: |
   overrides/
+  assets/images/characters/kuon.png
+  assets/images/characters/homura.png
+  assets/images/characters/kuon-portrait.png
+  assets/images/characters/homura-portrait.png
 
 nav:
   - Welcome!: index.md

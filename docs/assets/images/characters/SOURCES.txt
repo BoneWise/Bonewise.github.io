@@ -1,27 +1,82 @@
 Character artwork sources
 Retrieved: 2026-10-24 (Asia/Tokyo)
 
-kuon.png — Kuon / Utawarerumono: Mask of Deception
-Source page: https://aquaplus.jp/uta/itsu/
-Original image: https://aquaplus.jp/uta/itsu/images/character/figure02.png
-Copyright: AQUAPLUS
-
-homura.png — Homura Akemi / Puella Magi Madoka Magica
-Source page: https://www.madoka-magica.com/tv/youtube-streaming/character/
-Original image: https://www.madoka-magica.com/tv/youtube-streaming/assets/img/_in/chara02.png
-Copyright: Magica Quartet / Aniplex・Madoka Partners・MBS
-
-Files are unchanged official-site images, not original artwork by the site owner.
+All images are official-site images, not original artwork by the site owner.
 The original rights holders retain their rights; source attribution is not a license.
-Banner and portrait crops are applied only at display time with CSS / Canvas.
-The night banner uses the magical-girl outfit on the left of the source image.
+Files under banner/ and portraits/ are derived from the originals only by trimming
+transparent margins, one crop (noted below), resizing and WebP conversion.
+Display-time crops and fades are applied with CSS / Canvas.
+Full download records (original URL, size, SHA-256) are in materials/kuon-homura/sources.json.
 
-kuon-portrait.png — Kuon, alternate anime portrait for the pixel matrix
-Source page: https://utawarerumono.jp/2nd/
-Original image: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon02.png
-Copyright: うたわれるもの偽りの仮面製作委員会
+-- Day · Kuon (Utawarerumono) -------------------------------------------------
 
-homura-portrait.png — Homura, alternate chibi portrait for the pixel matrix
-Source page: https://www.madoka-magica.com/rebellion/special/present01.html
-Original image: https://www.madoka-magica.com/rebellion/special/img/present01/icon_homura.png
-Copyright: Magica Quartet / Aniplex・Madoka Movie Project Rebellion
+banner/kuon-home.webp — Kuon, 2022 anime standing art
+  Source page: https://utawarerumono.jp/character/?char=2
+  Original: https://utawarerumono.jp/manage/wp-content/themes/hakuoro-new/_assets/images/contents/char/detail/char_002_pc.png
+  © うたわれるもの二人の白皇製作委員会
+
+banner/kuon-about.webp — Kuon, Utawarerumono ZAN 2 character art
+  Source page: https://aquaplus.jp/uta/zan2/
+  Original: https://aquaplus.jp/uta/zan2/images/character/body_i01.png
+  © AQUAPLUS
+
+banner/kuon-research.webp — Kuon, Utawarerumono Lost Flag character art
+  Source page: https://utaware-lf.jp/#character
+  Original: https://utaware-lf.jp/images/character/chr03.png
+  © AQUAPLUS
+
+banner/kuon-contact.webp — Kuon, Utawarerumono ZAN 2 key-visual cut-out
+  Source page: https://aquaplus.jp/uta/zan2/
+  Original: https://aquaplus.jp/uta/zan2/images/hero/mainchr_kuon.png
+  © AQUAPLUS
+
+portraits/kuon-1.webp — official icon (same file as the former kuon-portrait.png)
+  Original: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon02.png
+portraits/kuon-2.webp — Original: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon01.png
+portraits/kuon-3.webp — Original: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon04.png
+portraits/kuon-4.webp — Original: https://utawarerumono.jp/2nd/images/special/twicon/uta_kuon03.png
+  Source page: https://utawarerumono.jp/2nd/#special
+  © うたわれるもの偽りの仮面製作委員会
+
+-- Night · Homura Akemi (Puella Magi Madoka Magica) ----------------------------
+
+banner/homura-home.webp, banner/homura-contact.webp — left (magical-girl outfit) and
+  right (school uniform) figures cropped from one official image
+  Source page: https://www.madoka-magica.com/tv/youtube-streaming/character/
+  Original: https://www.madoka-magica.com/tv/youtube-streaming/assets/img/_in/chara02.png
+  © Magica Quartet / Aniplex・Madoka Partners・MBS
+
+banner/homura-about.webp — Homura, Rebellion standing art
+  Source page: https://www.madoka-magica.com/rebellion/character/
+  Original: https://www.madoka-magica.com/rebellion/character/img/img_homura.png
+  © Magica Quartet / Aniplex・Madoka Movie Project Rebellion
+
+banner/homura-research.webp — Homura, Magia Exedra character illustration (right part)
+  Source page: https://madoka-exedra.com/character/?id=03
+  Original: https://madoka-exedra.com/assets_teaser2/img/character/img_chara_A2.jpg
+  © 2024 Magica Quartet / Aniplex, Magia Exedra Project
+
+portraits/homura-1.webp — chibi icon (same file as the former homura-portrait.png)
+  Source page: https://www.madoka-magica.com/rebellion/special/present01.html
+  Original: https://www.madoka-magica.com/rebellion/special/img/present01/icon_homura.png
+  © Magica Quartet / Aniplex・Madoka Movie Project Rebellion
+portraits/homura-2.webp — Magia Record icon
+  Source page: https://100evil.magireco.com/special/present_icon.html
+  Original: https://100evil.magireco.com/images/special/twicon/icon_01.png
+  © Magica Quartet / Aniplex・Magia Record Partners
+portraits/homura-3.webp — official emoticon icon
+  Source page: https://www.madoka-magica.com/tv/archives/special/present/twitter_bot.html
+  Original: https://www.madoka-magica.com/tv/archives/special/present/img/item/twitter_icon_homura.gif
+  © Magica Quartet / Aniplex・Madoka Partners・MBS
+
+../motifs/gear.png — gear decoration, converted to a single-colour alpha mask
+  Source page: https://www.madoka-magica.com/tv/youtube-streaming/
+  Original: https://www.madoka-magica.com/tv/youtube-streaming/assets/img/deco_gear01.png
+  © Magica Quartet / Aniplex・Madoka Partners・MBS
+
+-- Not published ---------------------------------------------------------------
+
+kuon.png, homura.png, kuon-portrait.png, homura-portrait.png are the previous
+versions. They are listed in exclude_docs in mkdocs.yml and no longer published;
+they can be deleted.
+The seigaiha pattern, sun disc and clock face are drawn in SVG for this site.

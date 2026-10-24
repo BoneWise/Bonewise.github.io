@@ -22,7 +22,7 @@
       {% include "partials/zh-profile.html" %}
     </aside>
     <div class="md-content zh-main" data-md-component="content">
-      <article class="md-content__inner md-typeset{% if not page.is_homepage %} zh-card zh-page{% endif %}">
+      <article class="md-content__inner md-typeset{% if not page.is_homepage %} zh-card zh-page{% if page.title %} has-banner-title{% endif %}{% endif %}">
         {% block content %}
           {% include "partials/content.html" %}
         {% endblock %}

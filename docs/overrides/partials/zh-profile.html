@@ -1,6 +1,9 @@
-{#- 侧栏个人卡（所有页面共用） -#}
+{#- 侧栏个人卡（所有页面共用）：顶部纹样带（昼 = 青海波，夜 = 齿轮星空） -#}
 {% set zh = config.extra.zh or {} %}
 <div class="zh-card zh-profile">
+  <div class="zh-profile__band" aria-hidden="true">
+    <span class="zh-profile__gear zh-only-night"></span>
+  </div>
   <div class="zh-profile__avatar" aria-hidden="true"><span>哲</span></div>
   <p class="zh-profile__name">Zhe Hu <span lang="zh-Hans">胡哲</span></p>
   <p class="zh-profile__role">M2 Student in Neuroscience</p>
@@ -19,17 +22,20 @@
     {% endif %}
   </div>
 </div>
-{#- 首页侧栏：像素人物方阵（装饰），单独成卡，不放进研究卡片 -#}
-{% if page.is_homepage %}
-<div class="zh-card zh-pixel" aria-hidden="true">
-  <div class="zh-pixel__cover">
-    <div class="zh-pixel__portrait zh-only-day">
-      <img src="{{ 'assets/images/characters/kuon-portrait.png' | url }}" data-portrait="day" data-crop="0,0,1,1" width="300" height="300" alt="" decoding="async">
-    </div>
-    <div class="zh-pixel__portrait zh-only-night">
-      <img src="{{ 'assets/images/characters/homura-portrait.png' | url }}" data-portrait="night" data-crop="0,0,1,1" width="256" height="256" alt="" decoding="async">
-    </div>
-    <canvas class="zh-voxels"></canvas>
+{#- 首页侧栏：像素人物方阵（装饰）。点击切换头像，头像列表在 mkdocs.yml 的 extra.zh.portraits -#}
+{% if page.is_homepage and zh.portraits %}
+<div class="zh-card zh-pixel">
+  <button type="button" class="zh-pixel__cover" aria-label="Switch portrait" title="Click to switch">
+    {% for scheme in ["day", "night"] %}
+      {% for p in zh.portraits[scheme] or [] %}
+        <img class="zh-pixel__src zh-only-{{ scheme }}{% if loop.first %} is-current{% endif %}" {% if loop.first %}src{% else %}data-src{% endif %}="{{ p.src | url }}" data-portrait="{{ scheme }}" data-name="{{ p.name }}" alt="" decoding="async">
+      {% endfor %}
+    {% endfor %}
+    <canvas class="zh-voxels" aria-hidden="true"></canvas>
+  </button>
+  <div class="zh-pixel__meta" aria-hidden="true">
+    <span class="zh-pixel__name"><span class="zh-only-day">Kuon <i lang="ja">クオン</i></span><span class="zh-only-night">Homura <i lang="ja">ほむら</i></span></span>
+    <span class="zh-pixel__dots"></span>
   </div>
 </div>
 {% endif %}

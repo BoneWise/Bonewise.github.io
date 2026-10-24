@@ -1,9 +1,14 @@
 {#-
-  顶部横幅：默认由画布绘制（夜 = 紫色星空，昼 = 晨空远山），并有少量落花。
-  想换成自己的图：在 mkdocs.yml 的 extra.zh.banner_night / banner_day 填图片路径。
+  顶部横幅（所有页面）
+  - 背景：画布绘制（夜 = 紫色星空 + 落羽，昼 = 晨空远山 + 落花）
+  - 纹样：昼 = 日轮与青海波，夜 = 时钟（指针按东京时间走）与齿轮
+  - 人物：昼 = 久远，夜 = 晓美焰；每页一张，图片路径在 mkdocs.yml 的 extra.zh.cast
+  想换成整张背景图：在 mkdocs.yml 的 extra.zh.banner_night / banner_day 填图片路径。
 -#}
 {% set zh = config.extra.zh or {} %}
-<section class="zh-banner{% if page.is_homepage %} zh-banner--home{% endif %}" aria-label="Banner">
+{% set slug = "home" if page.is_homepage else ((page.url or "") | replace("/", "")) %}
+{% set cast = (zh.cast or {})[slug] if zh.cast and slug in zh.cast else {} %}
+<section class="zh-banner{% if page.is_homepage %} zh-banner--home{% endif %}" data-page="{{ slug or 'page' }}" aria-label="Banner">
   <div class="zh-banner__art" aria-hidden="true">
     {% if zh.banner_night %}
       <div class="zh-banner__img zh-only-night" style="background-image: url('{{ zh.banner_night | url }}')"></div>
@@ -12,19 +17,95 @@
       <div class="zh-banner__img zh-only-day" style="background-image: url('{{ zh.banner_day | url }}')"></div>
     {% endif %}
     <canvas class="zh-banner__sky" data-image-night="{{ 1 if zh.banner_night else 0 }}" data-image-day="{{ 1 if zh.banner_day else 0 }}"></canvas>
-    <div class="zh-banner__cast md-grid">
-      <div class="zh-banner__character zh-banner__character--kuon zh-only-day">
-        <img src="{{ 'assets/images/characters/kuon.png' | url }}" width="358" height="424" alt="" decoding="async">
+
+    {#- 纹样层：位于人物身后 -#}
+    <div class="zh-banner__motif md-grid" data-parallax="0.05">
+      <div class="zh-motif zh-motif--sun zh-only-day">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="zh-sun-fill" cx="50%" cy="42%" r="58%">
+              <stop offset="0" stop-color="#fffaf3" stop-opacity=".95"/>
+              <stop offset=".7" stop-color="#fff3ea" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#ffeee6" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="zh-seigaiha" width="20" height="10" patternUnits="userSpaceOnUse">
+              <g fill="#fff6ef" stroke="currentColor" stroke-width=".45">
+                <g transform="translate(10 0)"><circle r="10"/><circle r="7.4"/><circle r="4.8"/><circle r="2.2"/></g>
+                <g transform="translate(0 5)"><circle r="10"/><circle r="7.4"/><circle r="4.8"/><circle r="2.2"/></g>
+                <g transform="translate(20 5)"><circle r="10"/><circle r="7.4"/><circle r="4.8"/><circle r="2.2"/></g>
+                <g transform="translate(10 10)"><circle r="10"/><circle r="7.4"/><circle r="4.8"/><circle r="2.2"/></g>
+              </g>
+            </pattern>
+            <linearGradient id="zh-wave-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset=".52" stop-color="#fff" stop-opacity="0"/>
+              <stop offset=".8" stop-color="#fff" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
+            </linearGradient>
+            <mask id="zh-wave-mask"><rect width="200" height="200" fill="url(#zh-wave-fade)"/></mask>
+            <clipPath id="zh-sun-clip"><circle cx="100" cy="100" r="84"/></clipPath>
+          </defs>
+          <circle cx="100" cy="100" r="84" fill="url(#zh-sun-fill)"/>
+          <rect width="200" height="200" fill="url(#zh-seigaiha)" clip-path="url(#zh-sun-clip)" mask="url(#zh-wave-mask)" class="zh-motif__waves"/>
+          <circle cx="100" cy="100" r="90" class="zh-motif__ring"/>
+          <circle cx="100" cy="100" r="96.5" class="zh-motif__ring zh-motif__ring--dash"/>
+        </svg>
       </div>
-      <div class="zh-banner__character zh-banner__character--homura zh-only-night">
-        <img src="{{ 'assets/images/characters/homura.png' | url }}" width="780" height="832" alt="" decoding="async">
+
+      <div class="zh-motif zh-motif--clock zh-only-night">
+        <span class="zh-gear zh-gear--a"></span>
+        <span class="zh-gear zh-gear--b"></span>
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="96" class="zh-motif__ring"/>
+          <circle cx="100" cy="100" r="90.5" class="zh-motif__ring zh-motif__ring--thin"/>
+          <g class="zh-clock__ticks">
+            {%- for i in range(60) %}
+              <line x1="100" y1="10.5" x2="100" y2="{{ 18 if i % 5 == 0 else 14 }}" transform="rotate({{ i * 6 }} 100 100)"{% if i % 5 == 0 %} class="is-major"{% endif %}/>
+            {%- endfor %}
+          </g>
+          <g class="zh-clock__numerals">
+            <text x="100.0" y="29.0">XII</text>
+            <text x="135.5" y="38.5">I</text>
+            <text x="161.5" y="64.5">II</text>
+            <text x="171.0" y="100.0">III</text>
+            <text x="161.5" y="135.5">IIII</text>
+            <text x="135.5" y="161.5">V</text>
+            <text x="100.0" y="171.0">VI</text>
+            <text x="64.5" y="161.5">VII</text>
+            <text x="38.5" y="135.5">VIII</text>
+            <text x="29.0" y="100.0">IX</text>
+            <text x="38.5" y="64.5">X</text>
+            <text x="64.5" y="38.5">XI</text>
+          </g>
+          <circle cx="100" cy="100" r="56" class="zh-motif__ring zh-motif__ring--dash"/>
+          <circle cx="100" cy="100" r="22" class="zh-motif__ring zh-motif__ring--thin"/>
+          <g class="zh-clock__hands">
+            <line class="zh-clock__hand zh-clock__hand--h" x1="100" y1="106" x2="100" y2="62"/>
+            <line class="zh-clock__hand zh-clock__hand--m" x1="100" y1="110" x2="100" y2="40"/>
+            <line class="zh-clock__hand zh-clock__hand--s" x1="100" y1="116" x2="100" y2="30"/>
+            <circle cx="100" cy="100" r="2.6" class="zh-clock__pin"/>
+          </g>
+        </svg>
       </div>
+    </div>
+
+    {#- 人物层 -#}
+    <div class="zh-banner__cast md-grid" data-parallax="0.1">
+      {% if cast.day %}
+        <div class="zh-figure zh-figure--day zh-only-day">
+          <img src="{{ cast.day | url }}" alt="" decoding="async"{% if page.is_homepage %} fetchpriority="high"{% endif %}>
+        </div>
+      {% endif %}
+      {% if cast.night %}
+        <div class="zh-figure zh-figure--night zh-only-night">
+          <img src="{{ cast.night | url }}" alt="" decoding="async">
+        </div>
+      {% endif %}
     </div>
     <div class="zh-banner__shade"></div>
   </div>
 
   {% if page.is_homepage %}
-    <div class="zh-banner__inner md-grid">
+    <div class="zh-banner__inner md-grid" data-parallax="0.22">
       <p class="zh-banner__eyebrow"><span>NeuroAI</span><i></i><span>Computational Neuroscience</span></p>
       <h1 class="zh-banner__name">Zhe Hu <span lang="zh-Hans">胡 哲</span></h1>
       <p class="zh-banner__sub"><span>M2 Student in Neuroscience</span><span class="zh-sep" aria-hidden="true">·</span><span>Suzuki Lab, Japan</span></p>
@@ -32,5 +113,10 @@
     <a class="zh-banner__down" href="#welcome" aria-label="Scroll down">
       {% include ".icons/material/chevron-down.svg" %}
     </a>
+  {% elif page.title %}
+    <div class="zh-banner__inner zh-banner__inner--page md-grid" data-parallax="0.18">
+      {% if page.meta and page.meta.zh_kicker %}<p class="zh-banner__eyebrow"><span>{{ page.meta.zh_kicker }}</span></p>{% endif %}
+      <p class="zh-banner__title" aria-hidden="true">{{ page.title }}{% if page.meta and page.meta.zh_subtitle %}<span lang="ja">{{ page.meta.zh_subtitle }}</span>{% endif %}</p>
+    </div>
   {% endif %}
 </section>

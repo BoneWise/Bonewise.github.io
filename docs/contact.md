@@ -1,4 +1,7 @@
 ---
+# 横幅标题旁的小字（kicker）与日文副标题
+zh_kicker: Get in Touch
+zh_subtitle: 連絡先
 hide:
   - toc
 ---

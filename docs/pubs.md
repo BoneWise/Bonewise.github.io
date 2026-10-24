@@ -1,4 +1,7 @@
 ---
+# 横幅标题旁的小字（kicker）与日文副标题
+zh_kicker: Projects
+zh_subtitle: 研究
 hide:
   - toc
 ---
